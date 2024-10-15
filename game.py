@@ -50,6 +50,12 @@ def main():
         # из переменной current_player.
         game.make_move(row, column, current_player)
         game.display()
+        if game.check_win(current_player):
+            print(f'Победили {current_player}.')
+            running = False
+        elif game.is_board_full():
+            print('Ничья!')
+            running = False
         # Тернарный оператор, через который реализована смена игроков.
         # Если current_player равен X, то новым значением будет O,
         # иначе — новым значением будет X.
