@@ -3,3 +3,5 @@ __pycache__/
 .mypy_cache/
 test.py
 .vscode/
+file_actions.py
+example.txt

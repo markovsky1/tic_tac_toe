@@ -3,6 +3,17 @@ from gameparts import Board
 from gameparts.exceptions import FieldIndexError, CellOccupiedError
 
 
+def save_result(result):
+    # # Открыть файл results.txt в режиме "добавление".
+    # # Если нужно явно указать кодировку, добавьте параметр encoding='utf-8'.
+    # file = open('results.txt', 'a', encoding='utf-8')
+    # # Записать в файл содержимое переменной result.
+    # file.write(result + '\n')
+    # file.close()
+    with open('results.txt', 'a', encoding='utf-8') as f:
+        f.write(result + '\n')
+
+
 def main():
     game = Board()
     # Первыми ходят крестики.
@@ -51,10 +62,14 @@ def main():
         game.make_move(row, column, current_player)
         game.display()
         if game.check_win(current_player):
-            print(f'Победили {current_player}.')
+            result = f'Победили {current_player}.'
+            print(result)
+            save_result(result)
             running = False
         elif game.is_board_full():
-            print('Ничья!')
+            result = 'Ничья!'
+            print(result)
+            save_result(result)
             running = False
         # Тернарный оператор, через который реализована смена игроков.
         # Если current_player равен X, то новым значением будет O,
